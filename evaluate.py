@@ -8,7 +8,7 @@ import seaborn as sns
 from wordcloud import WordCloud
 
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import confusion_matrix, roc_curve, auc
+from sklearn.metrics import confusion_matrix, roc_curve, auc, accuracy_score, precision_score, recall_score, f1_score
 
 from preprocess import clean_text
 
@@ -90,6 +90,13 @@ def generate_all_plots():
         plt.savefig(os.path.join(PLOT_DIR, f"wordcloud_{name}.png"), dpi=150)
         plt.close()
 
+        print("\n===== Evaluation Metrics =====")
+    print(f"Accuracy : {accuracy_score(y_test, pred):.4f}")
+    print(f"Precision: {precision_score(y_test, pred):.4f}")
+    print(f"Recall   : {recall_score(y_test, pred):.4f}")
+    print(f"F1 Score : {f1_score(y_test, pred):.4f}")
+    print("==============================\n")
+    
     print(f"[OK] Plots saved in: {PLOT_DIR}")
 
 
